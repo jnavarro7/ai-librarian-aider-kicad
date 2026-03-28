@@ -1,0 +1,16 @@
+ollama
+langchain
+langchain-community
+langchain-ollama
+pypdf
+chromadb
+markitdown[all]
+# Optional / not used by pdf_to_md_rag.py:
+# pdfplumber
+# langchain-core
+# langchain_text_splitters
+# unstructured
+# unstructured[all-docs]
+# fastembed
+# sentence-transformers
+# elevenlabs
