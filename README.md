@@ -51,10 +51,19 @@ source myenv/bin/activate
 ## Process
 
 1. Get a part datasheet in PDF format. 
+
 2. Convert PDF to Markdown
-    python pdf_to_md_markitdown.py "datasheet path"
+```bash
+python pdf_to_md_markitdown.py "datasheet path"
+```
+
 3. Add .md to vector database (RAG)
-    python md_rag.py ".md file path"
+``` bash
+python md_rag.py ".md file path"
+```
+
 4. Test vector DB
-    python query_vector_db_pin_extract.py "extract pinout of example part"
+```bash
+python query_vector_db_pin_extract.py "extract pinout of example part"
+```
 
