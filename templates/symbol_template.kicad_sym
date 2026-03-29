@@ -1,0 +1,11 @@
+(kicad_symbol_lib
+  (version 20231120)
+  (generator ai-librarian-aider-kicad)
+  (symbol {{SYMBOL_NAME}}
+    (property "Reference" "{{REFERENCE}}" (id 0) (at 0 5 0))
+    (property "Value" "{{VALUE}}" (id 1) (at 0 -5 0))
+    (property "Footprint" "{{FOOTPRINT}}" (id 2) (at 0 -7 0))
+    (property "Datasheet" "{{DATASHEET}}" (id 3) (at 0 -9 0))
+{{PIN_BLOCK}}
+  )
+)
