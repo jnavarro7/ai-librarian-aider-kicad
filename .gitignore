@@ -3,3 +3,7 @@
 
 # macOS system files
 .DS_Store
+
+# Datasheet files
+hardware/datasheets/*.pdf
+tmp/*.pdf 
