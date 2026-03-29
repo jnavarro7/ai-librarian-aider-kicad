@@ -1,6 +1,24 @@
 # ai-librarian-aider-kicad
 AI librarian aider for KiCad
 
+## Requirements
+- Python 3.x.
+- Ollama installed locally.
+- An Ollama model pulled locally and available for inference.
+- A local Ollama server running before using the pinout pipeline.
+
+Example:
+
+```bash
+ollama serve
+```
+
+In another terminal, you may also want to verify that your model is available:
+
+```bash
+ollama list
+```
+
 ## Setup Python virtual environment
 
 1. Navigate to the project directory:
@@ -50,20 +68,49 @@ source myenv/bin/activate
 
 ## Process
 
-1. Get a part datasheet in PDF format. 
+1. Get a part datasheet in PDF format.
 
-2. Convert PDF to Markdown
+2. Convert the PDF to Markdown.
+
 ```bash
-python pdf_to_md_markitdown.py "datasheet path"
+python pdf_to_md_markitdown.py "<datasheet-file.pdf>" "<output.md>"
 ```
 
-3. Add .md to vector database (RAG)
-``` bash
-python md_rag.py ".md file path"
+3. Add the Markdown file to the vector database.
+
+```bash
+python md_rag.py "<output.md>"
 ```
 
-4. Test vector DB
+4. Test the vector database data (optional).
+
 ```bash
 python query_vector_db_pin_extract.py "extract pinout of example part"
 ```
 
+5. Get the pinout in Markdown format.
+
+```bash
+python pinout_wrapper.py "<PART> <PACKAGE> pinout" --part-number "<EXACT_ORDERING_CODE>" --output "<name>.md"
+```
+
+### OPA4182D example
+
+```bash
+python pdf_to_md_markitdown.py tmp/opa4182.pdf tmp/opa4182.md
+python md_rag.py tmp/opa4182.md
+python pinout_wrapper.py "OPA4182 SOIC-14 pinout" --part-number "OPA4182D" --output OPA4182_soic14_pinout.md
+```
+
+### Run pinout pipeline 
+
+```bash
+python run_pinout_pipeline.py \
+  --pdf tmp/opa4182.pdf \
+  --md tmp/opa4182.md \
+  --query "OPA4182 SOIC-14 pinout" \
+  --part-number "OPA4182D" \
+  --output tmp/OPA4182_soic14_pinout.md
+```
+
+![Pipeline wrapper demo](images/pipeline_wrapper.gif)
