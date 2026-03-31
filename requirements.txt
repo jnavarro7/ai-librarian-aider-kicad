@@ -6,8 +6,8 @@ langchain-chroma
 pypdf
 chromadb
 markitdown[all]
+pdfplumber
 # Optional / not used by pdf_to_md_rag.py:
-# pdfplumber
 # langchain-core
 # langchain_text_splitters
 # unstructured

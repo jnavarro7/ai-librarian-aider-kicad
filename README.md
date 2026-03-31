@@ -102,15 +102,16 @@ python md_rag.py tmp/opa4182.md
 python pinout_wrapper.py "OPA4182 SOIC-14 pinout" --part-number "OPA4182D" --output OPA4182_soic14_pinout.md
 ```
 
-### Run pinout pipeline 
+### Run the pipeline wrapper 
 
 ```bash
-python run_pinout_pipeline.py \
-  --pdf tmp/opa4182.pdf \
-  --md tmp/opa4182.md \
-  --query "OPA4182 SOIC-14 pinout" \
-  --part-number "OPA4182D" \
-  --output tmp/OPA4182_soic14_pinout.md
+python pipeline_wrapper.py \
+  --pdf tmp/infineon_psoc4.pdf \
+  --md tmp/infineon_psoc4.md \
+  --json tmp/infineon_psoc4.json \
+  --package "28-pin SSOP" \
+  --template templates/symbol_template.kicad_sym \
+  --out output/psoc4.kicad_sym
 ```
 
 ![Pipeline wrapper demo](images/pipeline_wrapper.gif)

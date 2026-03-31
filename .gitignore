@@ -6,4 +6,4 @@
 
 # Datasheet files
 hardware/datasheets/*.pdf
-tmp/*.pdf 
+tmp/* 
