@@ -1,11 +1,17 @@
-import os
-import json
 import argparse
+import json
+import os
+import shutil
+from pathlib import Path
 
 import ollama
-from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
 from langchain_core.embeddings import Embeddings as BaseEmbeddings
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+
+
+def normalize(text):
+    return (text or "").lower().replace(" ", "").replace("-", "")
 
 
 def load_markdown(md_path):
@@ -53,14 +59,10 @@ def build_text_from_package_pinout(data, target_package=None):
     return "\n".join(lines).strip()
 
 
-def normalize(text):
-    return (text or "").lower().replace(" ", "").replace("-", "")
-
-
 def chunk_text(text, chunk_size=1200, chunk_overlap=300):
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=chunk_size,
-        chunk_overlap=chunk_overlap
+        chunk_overlap=chunk_overlap,
     )
     return splitter.split_text(text)
 
@@ -82,12 +84,18 @@ class OllamaEmbeddings(BaseEmbeddings):
         return response["embedding"]
 
 
-def store_in_vector_db(chunks, persist_directory="./db/vector_db", model="nomic-embed-text"):
+def reset_vector_db(persist_directory):
+    if os.path.isdir(persist_directory):
+        shutil.rmtree(persist_directory)
+
+
+def store_in_vector_db(chunks, persist_directory="./db/vector_db", model="nomic-embed-text", collection_name="pinout_db"):
     embedding_fn = OllamaEmbeddings(model=model)
     vector_db = Chroma.from_texts(
         texts=chunks,
         embedding=embedding_fn,
         persist_directory=persist_directory,
+        collection_name=collection_name,
     )
     return vector_db
 
@@ -111,15 +119,19 @@ def run_retrieval_test(vector_db, package, target_pin=None, k=3):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Load Markdown and JSON, store in vector DB, and test retrieval")
+    parser = argparse.ArgumentParser(
+        description="Load Markdown and JSON, store in vector DB, and test retrieval"
+    )
     parser.add_argument("md_path", help="Path to the Markdown file")
     parser.add_argument("--json", dest="json_file", required=True, help="Path to the JSON file")
-    parser.add_argument("--package", required=True, help="Package to filter, e.g. SSOP-28")
+    parser.add_argument("--package", required=True, help='Package to filter, e.g. "28-pin SSOP"')
     parser.add_argument("--persist_directory", default="./db/vector_db", help="Chroma persist directory")
+    parser.add_argument("--collection_name", default="pinout_db", help="Chroma collection name")
     parser.add_argument("--embed_model", default="nomic-embed-text", help="Ollama embedding model")
     parser.add_argument("--chunk_size", type=int, default=1200)
     parser.add_argument("--chunk_overlap", type=int, default=300)
     parser.add_argument("--test_pin", default="21", help="Optional pin number to test retrieval, e.g. 21")
+    parser.add_argument("--no-reset-db", action="store_true", help="Do not delete the existing vector DB before rebuilding")
     args = parser.parse_args()
 
     md_text = load_markdown(args.md_path)
@@ -133,10 +145,15 @@ def main():
     chunks = chunk_text(package_text, chunk_size=args.chunk_size, chunk_overlap=args.chunk_overlap)
     print(f"Created {len(chunks)} chunks")
 
+    if not args.no_reset_db:
+        reset_vector_db(args.persist_directory)
+        print(f"Reset vector database at: {args.persist_directory}")
+
     vector_db = store_in_vector_db(
         chunks,
         persist_directory=args.persist_directory,
-        model=args.embed_model
+        model=args.embed_model,
+        collection_name=args.collection_name,
     )
     print(f"Stored in vector database at: {args.persist_directory}")
     print("Ready for retrieval!")
