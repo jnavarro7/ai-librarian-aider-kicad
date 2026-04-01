@@ -112,7 +112,8 @@ python pipeline_wrapper.py \
   --package "28-pin SSOP" \
   --pin-count 28 \
   --template templates/symbol_template.kicad_sym \
-  --out output/psoc4.kicad_sym
+  --out output/psoc4.kicad_sym \
+  --validate
 ```
 
 ![Pipeline wrapper demo](images/ai-librarian.gif)

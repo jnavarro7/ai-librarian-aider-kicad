@@ -22,9 +22,7 @@ def run_cmd(cmd, title):
 
 
 def main():
-    parser = argparse.ArgumentParser(
-        description="Run PDF -> Markdown -> JSON/RAG -> symbol pipeline."
-    )
+    parser = argparse.ArgumentParser(description="Run PDF -> Markdown -> JSON/RAG -> symbol pipeline.")
     parser.add_argument("--pdf", required=True, help="Input PDF file")
     parser.add_argument("--md", required=True, help="Output Markdown file")
     parser.add_argument("--json", required=True, help="Output JSON file")
@@ -36,6 +34,9 @@ def main():
     parser.add_argument("--pdf-to-json-md-script", default="pdf_to_json_md.py")
     parser.add_argument("--json-md-rag-script", default="json_md_rag.py")
     parser.add_argument("--generate-symbol-script", default="generate_symbol.py")
+    parser.add_argument("--validate", action="store_true", help="Run LLM validation after symbol generation")
+    parser.add_argument("--validator-script", default="validate_symbol.py")
+    parser.add_argument("--validator-model", default="qwen2.5-coder:14b-instruct-q4_K_M")
 
     parser.add_argument("--db-step-md", default=None, help="Markdown file to index; defaults to --md")
     parser.add_argument("--query", default=None, help="Optional query for the RAG step, if your script needs it")
@@ -94,6 +95,10 @@ def main():
         ]
         if args.part_number:
             symbol_cmd.extend(["--part-number", args.part_number])
+        if args.validate:
+            symbol_cmd.append("--validate")
+            symbol_cmd.extend(["--validator-script", args.validator_script])
+            symbol_cmd.extend(["--validator-model", args.validator_model])
 
         run_cmd(symbol_cmd, "Generate KiCad symbol")
 

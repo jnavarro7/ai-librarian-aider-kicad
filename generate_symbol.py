@@ -1,6 +1,8 @@
 import argparse
 import json
 import re
+import subprocess
+import sys
 from pathlib import Path
 
 import ollama
@@ -227,6 +229,26 @@ def render_template(template_text, data, pin_block):
     return template_text
 
 
+def run_validation(symbol_path, pin_count, validator_script, validator_model):
+    cmd = [
+        sys.executable,
+        validator_script,
+        str(symbol_path),
+        "--pin-count",
+        str(pin_count),
+        "--model",
+        validator_model,
+    ]
+    result = subprocess.run(cmd, capture_output=True, text=True)
+    if result.returncode != 0:
+        raise RuntimeError(
+            f"Validation script failed:\nSTDOUT:\n{result.stdout}\nSTDERR:\n{result.stderr}"
+        )
+
+    text = (result.stdout or "").strip()
+    return json.loads(text) if text else {"ok": False, "summary": "No validation output.", "issues": ["No validation output."]}
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("markdown_file")
@@ -236,6 +258,9 @@ def main():
     parser.add_argument("--package", default="28-pin SSOP")
     parser.add_argument("--pin-count", type=int, required=True, help="Total number of pins this part has")
     parser.add_argument("--model", default="llama3.2:latest")
+    parser.add_argument("--validate", action="store_true", help="Run validation after generating the symbol")
+    parser.add_argument("--validator-script", default="validate_symbol.py")
+    parser.add_argument("--validator-model", default="qwen2.5-coder:14b-instruct-q4_K_M")
     args = parser.parse_args()
 
     if args.pin_count <= 0:
@@ -276,9 +301,15 @@ def main():
     if "{{" in final_text or "}}" in final_text:
         raise ValueError("Template placeholders were not fully replaced")
 
-    Path(args.out).parent.mkdir(parents=True, exist_ok=True)
-    Path(args.out).write_text(final_text, encoding="utf-8")
+    out_path = Path(args.out)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(final_text, encoding="utf-8")
+
     print(f"Wrote symbol to: {args.out}")
+
+    if args.validate:
+        result = run_validation(out_path, args.pin_count, args.validator_script, args.validator_model)
+        print(json.dumps(result, indent=2, ensure_ascii=False))
 
 
 if __name__ == "__main__":
