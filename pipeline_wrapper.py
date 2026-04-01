@@ -10,15 +10,16 @@ from rich.progress import Progress, SpinnerColumn, TextColumn
 console = Console()
 
 
-def run_cmd(cmd, title):
+def run_cmd(cmd, title, start_msg, done_msg):
     console.print(
         Panel.fit(
             f"[bold cyan]{title}[/bold cyan]\n[white]{' '.join(cmd)}[/white]",
             border_style="cyan",
         )
     )
-    subprocess.run(cmd, check=True)
-    console.print(f"[bold green]Done:[/bold green] {title}\n")
+    with console.status(f"[bold yellow]{start_msg}[/bold yellow]", spinner="dots"):
+        subprocess.run(cmd, check=True)
+    console.print(f"[bold green]✅[/bold green] {done_msg}\n")
 
 
 def main():
@@ -60,13 +61,17 @@ def main():
         TextColumn("[progress.description]{task.description}"),
         console=console,
     ) as progress:
-        task = progress.add_task("Preparing pipeline...", total=None)
+        task = progress.add_task("Starting...", total=None)
 
+        progress.update(task, description="📄 Converting PDF to Markdown + JSON...")
         run_cmd(
             [sys.executable, args.pdf_to_json_md_script, str(pdf_path)],
             "Convert PDF to Markdown + JSON",
+            "Parsing PDF and extracting structured data...",
+            "PDF converted to Markdown and JSON successfully.",
         )
 
+        progress.update(task, description="🧠 Running Markdown/JSON RAG extraction...")
         run_cmd(
             [
                 sys.executable,
@@ -78,6 +83,8 @@ def main():
                 args.package,
             ],
             "Run Markdown/JSON RAG extraction",
+            "Indexing markdown and building retrieval database...",
+            "Retrieval database built successfully.",
         )
 
         symbol_cmd = [
@@ -100,7 +107,21 @@ def main():
             symbol_cmd.extend(["--validator-script", args.validator_script])
             symbol_cmd.extend(["--validator-model", args.validator_model])
 
-        run_cmd(symbol_cmd, "Generate KiCad symbol")
+        progress.update(task, description="🛠️ Generating KiCad symbol...")
+        if args.validate:
+            run_cmd(
+                symbol_cmd,
+                "Generate KiCad symbol + Validation",
+                "Building symbol and validating output...",
+                "KiCad symbol generated and validated successfully.",
+            )
+        else:
+            run_cmd(
+                symbol_cmd,
+                "Generate KiCad symbol",
+                "Building symbol output...",
+                "KiCad symbol generated successfully.",
+            )
 
         progress.update(task, completed=1)
 
