@@ -1,7 +1,8 @@
 import argparse
+import json
 import re
 from pathlib import Path
-import json
+
 import ollama
 
 
@@ -25,7 +26,7 @@ def extract_json(text):
     start = text.find("{")
     end = text.rfind("}")
     if start != -1 and end != -1 and end > start:
-        return json.loads(text[start:end + 1])
+        return json.loads(text[start : end + 1])
     return json.loads(text)
 
 
@@ -54,7 +55,7 @@ def extract_tables_section(md_text):
     return section.strip()
 
 
-def parse_package_table(md_text, target_package="28-pin SSOP"):
+def parse_package_table(md_text, target_package="28-pin SSOP", pin_count=None):
     lines = md_text.splitlines()
     in_table = False
     table_lines = []
@@ -65,9 +66,8 @@ def parse_package_table(md_text, target_package="28-pin SSOP"):
             continue
         if in_table and line.strip().startswith("#### Table "):
             break
-        if in_table:
-            if line.strip():
-                table_lines.append(line.rstrip())
+        if in_table and line.strip():
+            table_lines.append(line.rstrip())
 
     if not table_lines:
         return []
@@ -82,7 +82,6 @@ def parse_package_table(md_text, target_package="28-pin SSOP"):
         return []
 
     header_packages = rows[2]
-    header_names = rows[3]
 
     pkg_col = None
     for i, cell in enumerate(header_packages):
@@ -101,22 +100,31 @@ def parse_package_table(md_text, target_package="28-pin SSOP"):
     for row in rows[4:]:
         if len(row) <= pkg_col + 1:
             continue
+
         pin = row[pkg_col].strip()
         name = row[pkg_col + 1].strip()
+
         if not pin or not name:
             continue
         if not re.fullmatch(r"\d+", pin):
             continue
+
         key = (pin, name)
         if key in seen:
             continue
         seen.add(key)
-        pins.append({
-            "number": pin,
-            "name": name,
-            "function": name,
-            "notes": "",
-        })
+
+        pins.append(
+            {
+                "number": pin,
+                "name": name,
+                "function": name,
+                "notes": "",
+            }
+        )
+
+        if pin_count is not None and len(pins) >= pin_count:
+            break
 
     return pins
 
@@ -157,17 +165,22 @@ def merge_defaults(meta, part_number, target_package):
     return meta
 
 
-def build_context(md_text, part_number, target_package, pins):
+def build_context(md_text, part_number, target_package, pins, pin_count):
     tables_section = extract_tables_section(md_text)
-    return json.dumps({
-        "part_number": part_number,
-        "package": target_package,
-        "extracted_tables_section": tables_section,
-        "selected_pinout": pins,
-    }, indent=2, ensure_ascii=False)
+    return json.dumps(
+        {
+            "part_number": part_number,
+            "package": target_package,
+            "pin_count": pin_count,
+            "extracted_tables_section": tables_section,
+            "selected_pinout": pins,
+        },
+        indent=2,
+        ensure_ascii=False,
+    )
 
 
-def answer_query(query, context, part_number=None, target_package=None, ollama_model="llama3.2:latest"):
+def answer_query(query, context, part_number=None, target_package=None, pin_count=None, ollama_model="llama3.2:latest"):
     schema = build_schema()
     prompt = (
         "You are a helpful electronics datasheet assistant.\n"
@@ -179,11 +192,14 @@ def answer_query(query, context, part_number=None, target_package=None, ollama_m
         "Do not use numeric table contents as metadata.\n"
         "If a field is missing, return an empty string.\n"
         "Do not generate pin definitions.\n"
+        "The pin list has already been limited to the exact pin count.\n"
+        "Do not infer or mention additional pins.\n"
         "If the part number is known, do not leave SYMBOL_NAME, REFERENCE, or VALUE empty.\n"
         "For generic symbols, leave FOOTPRINT empty and use '~' for DATASHEET if unknown.\n\n"
         f"QUERY:\n{query}\n\n"
         f"PART NUMBER:\n{part_number or query}\n\n"
         f"PACKAGE:\n{target_package or ''}\n\n"
+        f"TOTAL PIN COUNT:\n{pin_count or ''}\n\n"
         f"CONTEXT:\n{context}\n"
     )
 
@@ -218,25 +234,38 @@ def main():
     parser.add_argument("--out", default="output/generated_symbol.kicad_sym")
     parser.add_argument("--part-number", default=None)
     parser.add_argument("--package", default="28-pin SSOP")
+    parser.add_argument("--pin-count", type=int, required=True, help="Total number of pins this part has")
     parser.add_argument("--model", default="llama3.2:latest")
     args = parser.parse_args()
+
+    if args.pin_count <= 0:
+        raise ValueError("--pin-count must be greater than 0")
 
     md_text = Path(args.markdown_file).read_text(encoding="utf-8")
     template_text = Path(args.template).read_text(encoding="utf-8")
 
     part_number = args.part_number or parse_part_number(md_text)
-    pins = parse_package_table(md_text, target_package=args.package)
+    pins = parse_package_table(md_text, target_package=args.package, pin_count=args.pin_count)
 
     if not pins:
         raise ValueError(f"No pins found for package: {args.package}")
 
-    context = build_context(md_text, part_number, args.package, pins)
+    if len(pins) < args.pin_count:
+        raise ValueError(
+            f"Only found {len(pins)} pins, but --pin-count={args.pin_count}"
+        )
+
+    if len(pins) > args.pin_count:
+        pins = pins[: args.pin_count]
+
+    context = build_context(md_text, part_number, args.package, pins, args.pin_count)
 
     meta = answer_query(
         query="Generate KiCad symbol metadata from the selected markdown package table.",
         context=context,
         part_number=part_number,
         target_package=args.package,
+        pin_count=args.pin_count,
         ollama_model=args.model,
     )
 

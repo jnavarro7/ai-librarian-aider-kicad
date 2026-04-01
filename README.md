@@ -110,6 +110,7 @@ python pipeline_wrapper.py \
   --md tmp/infineon_psoc4.md \
   --json tmp/infineon_psoc4.json \
   --package "28-pin SSOP" \
+  --pin-count 28 \
   --template templates/symbol_template.kicad_sym \
   --out output/psoc4.kicad_sym
 ```

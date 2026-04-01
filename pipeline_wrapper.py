@@ -7,7 +7,6 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.progress import Progress, SpinnerColumn, TextColumn
 
-
 console = Console()
 
 
@@ -23,11 +22,14 @@ def run_cmd(cmd, title):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Run PDF -> Markdown -> JSON/RAG -> symbol pipeline.")
+    parser = argparse.ArgumentParser(
+        description="Run PDF -> Markdown -> JSON/RAG -> symbol pipeline."
+    )
     parser.add_argument("--pdf", required=True, help="Input PDF file")
     parser.add_argument("--md", required=True, help="Output Markdown file")
     parser.add_argument("--json", required=True, help="Output JSON file")
     parser.add_argument("--package", required=True, help='Package name, e.g. "28-pin SSOP"')
+    parser.add_argument("--pin-count", type=int, required=True, help="Total number of pins this part has")
     parser.add_argument("--template", required=True, help="KiCad symbol template file")
     parser.add_argument("--out", required=True, help="Final KiCad symbol output file")
 
@@ -36,10 +38,13 @@ def main():
     parser.add_argument("--generate-symbol-script", default="generate_symbol.py")
 
     parser.add_argument("--db-step-md", default=None, help="Markdown file to index; defaults to --md")
-    parser.add_argument("--query", default=None, help='Optional query for the RAG step, if your script needs it')
+    parser.add_argument("--query", default=None, help="Optional query for the RAG step, if your script needs it")
     parser.add_argument("--part-number", default=None, help="Optional part number for generate_symbol.py")
 
     args = parser.parse_args()
+
+    if args.pin_count <= 0:
+        raise ValueError("--pin-count must be greater than 0")
 
     pdf_path = Path(args.pdf)
     md_path = Path(args.md)
@@ -62,7 +67,15 @@ def main():
         )
 
         run_cmd(
-            [sys.executable, args.json_md_rag_script, str(db_md_path), "--json", str(json_path), "--package", args.package],
+            [
+                sys.executable,
+                args.json_md_rag_script,
+                str(db_md_path),
+                "--json",
+                str(json_path),
+                "--package",
+                args.package,
+            ],
             "Run Markdown/JSON RAG extraction",
         )
 
@@ -72,6 +85,8 @@ def main():
             str(md_path),
             "--package",
             args.package,
+            "--pin-count",
+            str(args.pin_count),
             "--template",
             args.template,
             "--out",
