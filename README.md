@@ -114,4 +114,4 @@ python pipeline_wrapper.py \
   --out output/psoc4.kicad_sym
 ```
 
-![Pipeline wrapper demo](images/pipeline_wrapper.gif)
+![Pipeline wrapper demo](images/ai-librarian.gif)
