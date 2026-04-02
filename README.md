@@ -113,7 +113,8 @@ python pipeline_wrapper.py \
   --pin-count 28 \
   --template templates/symbol_template.kicad_sym \
   --out output/psoc4.kicad_sym \
-  --validate
+  --validate \
+  --verbose no
 ```
 
 ![Pipeline wrapper demo](images/ai-librarian.gif)

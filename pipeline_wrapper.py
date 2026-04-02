@@ -42,6 +42,7 @@ def main():
     parser.add_argument("--db-step-md", default=None, help="Markdown file to index; defaults to --md")
     parser.add_argument("--query", default=None, help="Optional query for the RAG step, if your script needs it")
     parser.add_argument("--part-number", default=None, help="Optional part number for generate_symbol.py")
+    parser.add_argument("--verbose", default="no", choices=["no", "yes"], help="Enable debug messages in pdf_to_json_md.py")
 
     args = parser.parse_args()
 
@@ -64,8 +65,15 @@ def main():
         task = progress.add_task("Starting...", total=None)
 
         progress.update(task, description="📄 Converting PDF to Markdown + JSON...")
+        pdf_cmd = [
+            sys.executable,
+            args.pdf_to_json_md_script,
+            str(pdf_path),
+            "--verbose",
+            args.verbose,
+        ]
         run_cmd(
-            [sys.executable, args.pdf_to_json_md_script, str(pdf_path)],
+            pdf_cmd,
             "Convert PDF to Markdown + JSON",
             "Parsing PDF and extracting structured data...",
             "PDF converted to Markdown and JSON successfully.",

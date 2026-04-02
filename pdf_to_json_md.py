@@ -28,6 +28,11 @@ PORT_PIN_RE = re.compile(
 PACKAGE_PIN_RE = re.compile(r'^\d+$')
 
 
+def debug(msg, enabled):
+    if enabled:
+        print(f"[DEBUG] {msg}", file=sys.stderr)
+
+
 def normalize(s):
     if s is None:
         return ''
@@ -363,7 +368,7 @@ def extract_package_pinout_from_page(page, text, package=None, model='llama3.2:l
     return []
 
 
-def extract(pdf_path, part=None, package=None, model='llama3.2:latest'):
+def extract(pdf_path, part=None, package=None, model='llama3.2:latest', verbose=False):
     result = {
         'file': os.path.basename(pdf_path),
         'part_number': part,
@@ -385,6 +390,7 @@ def extract(pdf_path, part=None, package=None, model='llama3.2:latest'):
 
     with pdfplumber.open(pdf_path) as pdf:
         for i, page in enumerate(pdf.pages, start=1):
+            debug(f"Processing page {i}", verbose)
             text = page.extract_text() or ''
             sc = score_page(text, package)
 
@@ -461,14 +467,17 @@ def main():
     ap.add_argument('--part', default=None)
     ap.add_argument('--package', default=None, help='Package name like SSOP-28, TQFP-48, TSSOP-20')
     ap.add_argument('--model', default='llama3.2:latest')
+    ap.add_argument('--verbose', default='no', choices=['yes', 'no'])
     args = ap.parse_args()
+
+    verbose = args.verbose == 'yes'
 
     if not os.path.exists(args.input_pdf):
         print('File not found')
         sys.exit(1)
 
     prefix = args.out or os.path.splitext(args.input_pdf)[0]
-    data, md = extract(args.input_pdf, part=args.part, package=args.package, model=args.model)
+    data, md = extract(args.input_pdf, part=args.part, package=args.package, model=args.model, verbose=verbose)
     full_md = extract_full_markdown(args.input_pdf)
 
     with open(prefix + '.json', 'w', encoding='utf-8') as f:
