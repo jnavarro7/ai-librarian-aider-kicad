@@ -43,6 +43,7 @@ def main():
     parser.add_argument("--query", default=None, help="Optional query for the RAG step, if your script needs it")
     parser.add_argument("--part-number", default=None, help="Optional part number for generate_symbol.py")
     parser.add_argument("--verbose", default="no", choices=["no", "yes"], help="Enable debug messages in pdf_to_json_md.py")
+    parser.add_argument("--model", default=None, help="LLM model to pass to pdf_to_json_md.py and generate_symbol.py")
 
     args = parser.parse_args()
 
@@ -72,6 +73,9 @@ def main():
             "--verbose",
             args.verbose,
         ]
+        if args.model:
+            pdf_cmd.extend(["--model", args.model])
+
         run_cmd(
             pdf_cmd,
             "Convert PDF to Markdown + JSON",
@@ -108,6 +112,8 @@ def main():
             "--out",
             str(out_path),
         ]
+        if args.model:
+            symbol_cmd.extend(["--model", args.model])
         if args.part_number:
             symbol_cmd.extend(["--part-number", args.part_number])
         if args.validate:
