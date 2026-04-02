@@ -7,3 +7,6 @@
 # Datasheet files
 hardware/datasheets/*.pdf
 tmp/* 
+
+# Vector database files
+db/* 

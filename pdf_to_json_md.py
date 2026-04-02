@@ -447,8 +447,8 @@ def main():
     with open(prefix + '.md', 'w', encoding='utf-8') as f:
         f.write(md)
 
-    print(json.dumps(data.get('package_pinout', [])[:7], indent=2, ensure_ascii=False))
-    #print(json.dumps(data.get('package_pinout', []), indent=2, ensure_ascii=False))
+#    print(json.dumps(data.get('package_pinout', [])[:7], indent=2, ensure_ascii=False))
+
     print(f'✅ JSON: {prefix}.json')
     print(f'✅ Markdown: {prefix}.md')
 
