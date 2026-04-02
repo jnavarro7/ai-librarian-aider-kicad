@@ -7,7 +7,7 @@
 # Datasheet files
 hardware/datasheets/*.pdf
 tmp/* 
-!tmp/psoc*
+!tmp/infineon*
 
 # Vector database files
 db/* 

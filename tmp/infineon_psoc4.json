@@ -1,0 +1,1007 @@
+{
+  "file": "infineon_psoc4.pdf",
+  "part_number": null,
+  "package": null,
+  "package_pinout": [
+    {
+      "package_pin": 28,
+      "signal": "P0.0",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 16
+    },
+    {
+      "package_pin": 29,
+      "signal": "P0.1",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 16
+    },
+    {
+      "package_pin": 30,
+      "signal": "P0.2",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 16
+    },
+    {
+      "package_pin": 31,
+      "signal": "P0.3",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 16
+    },
+    {
+      "package_pin": 32,
+      "signal": "P0.4",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 16
+    },
+    {
+      "package_pin": 33,
+      "signal": "P0.5",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 16
+    },
+    {
+      "package_pin": 34,
+      "signal": "P0.6",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 16
+    },
+    {
+      "package_pin": 35,
+      "signal": "P0.7",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 16
+    },
+    {
+      "package_pin": 36,
+      "signal": "XRES",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 16
+    },
+    {
+      "package_pin": 37,
+      "signal": "P4.0",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 16
+    },
+    {
+      "package_pin": 38,
+      "signal": "P4.1",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 16
+    },
+    {
+      "package_pin": 39,
+      "signal": "P5.0",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 16
+    },
+    {
+      "package_pin": 40,
+      "signal": "P5.1",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 16
+    },
+    {
+      "package_pin": 41,
+      "signal": "P5.2",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 16
+    },
+    {
+      "package_pin": 42,
+      "signal": "P5.3",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 16
+    },
+    {
+      "package_pin": 43,
+      "signal": "VDDA",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 16
+    },
+    {
+      "package_pin": 44,
+      "signal": "VSSA",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 16
+    },
+    {
+      "package_pin": 45,
+      "signal": "VCCD",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 16
+    },
+    {
+      "package_pin": 46,
+      "signal": "VSSD",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 16
+    },
+    {
+      "package_pin": 47,
+      "signal": "VDDD",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 16
+    },
+    {
+      "package_pin": 48,
+      "signal": "P1.0",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 16
+    },
+    {
+      "package_pin": 1,
+      "signal": "P1.1",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 16
+    },
+    {
+      "package_pin": 2,
+      "signal": "P1.2",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 16
+    },
+    {
+      "package_pin": 3,
+      "signal": "P1.3",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 16
+    },
+    {
+      "package_pin": 4,
+      "signal": "P1.4",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 16
+    },
+    {
+      "package_pin": 5,
+      "signal": "P1.5",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 16
+    },
+    {
+      "package_pin": 6,
+      "signal": "P1.6",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 16
+    },
+    {
+      "package_pin": 7,
+      "signal": "P1.7",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 16
+    },
+    {
+      "package_pin": 8,
+      "signal": "VDDA",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 16
+    },
+    {
+      "package_pin": 9,
+      "signal": "VSSA",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 16
+    },
+    {
+      "package_pin": 10,
+      "signal": "P2.0",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 16
+    },
+    {
+      "package_pin": 11,
+      "signal": "P2.1",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 16
+    },
+    {
+      "package_pin": 12,
+      "signal": "P2.2",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 17
+    },
+    {
+      "package_pin": 13,
+      "signal": "P2.3",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 17
+    },
+    {
+      "package_pin": 14,
+      "signal": "P2.4",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 17
+    },
+    {
+      "package_pin": 15,
+      "signal": "P2.5",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 17
+    },
+    {
+      "package_pin": 16,
+      "signal": "P2.6",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 17
+    },
+    {
+      "package_pin": 17,
+      "signal": "P2.7/VREF",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 17
+    },
+    {
+      "package_pin": 18,
+      "signal": "VSSA",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 17
+    },
+    {
+      "package_pin": 19,
+      "signal": "VDDA",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 17
+    },
+    {
+      "package_pin": 20,
+      "signal": "P3.0",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 17
+    },
+    {
+      "package_pin": 21,
+      "signal": "P3.1",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 17
+    },
+    {
+      "package_pin": 22,
+      "signal": "P3.2",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 17
+    },
+    {
+      "package_pin": 23,
+      "signal": "P3.3",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 17
+    },
+    {
+      "package_pin": 24,
+      "signal": "P3.4",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 17
+    },
+    {
+      "package_pin": 25,
+      "signal": "P3.5",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 17
+    },
+    {
+      "package_pin": 26,
+      "signal": "P3.6",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 17
+    },
+    {
+      "package_pin": 27,
+      "signal": "P3.7",
+      "note": "",
+      "package": "Packages",
+      "source": "table",
+      "page": 17
+    },
+    {
+      "package_pin": 2,
+      "signal": "tcpwm.line_",
+      "note": "",
+      "package": "",
+      "source": "llm",
+      "page": 20
+    },
+    {
+      "package_pin": 3,
+      "signal": "sarmux[0]",
+      "note": "",
+      "package": "",
+      "source": "llm",
+      "page": 20
+    },
+    {
+      "package_pin": 6,
+      "signal": "tcpwm.line[1]:0",
+      "note": "",
+      "package": "",
+      "source": "llm",
+      "page": 20
+    },
+    {
+      "package_pin": 7,
+      "signal": "ctb_pads[7]",
+      "note": "",
+      "package": "",
+      "source": "llm",
+      "page": 20
+    },
+    {
+      "package_pin": 10,
+      "signal": "scb[2].spi_",
+      "note": "",
+      "package": "",
+      "source": "llm",
+      "page": 20
+    },
+    {
+      "package_pin": 11,
+      "signal": "tcpwm.line[3]:0",
+      "note": "",
+      "package": "",
+      "source": "llm",
+      "page": 20
+    },
+    {
+      "package_pin": 12,
+      "signal": "lpcomp.in_",
+      "note": "",
+      "package": "",
+      "source": "llm",
+      "page": 20
+    },
+    {
+      "package_pin": 13,
+      "signal": "scb[0].uart_cts:0",
+      "note": "",
+      "package": "",
+      "source": "llm",
+      "page": 20
+    },
+    {
+      "package_pin": 14,
+      "signal": "sarmux[3]",
+      "note": "",
+      "package": "",
+      "source": "llm",
+      "page": 20
+    },
+    {
+      "package_pin": 15,
+      "signal": "tcpwm.line[6]:0",
+      "note": "",
+      "package": "",
+      "source": "llm",
+      "page": 20
+    },
+    {
+      "package_pin": 16,
+      "signal": "scb[2].uart_rx:2",
+      "note": "",
+      "package": "",
+      "source": "llm",
+      "page": 20
+    },
+    {
+      "package_pin": 17,
+      "signal": "sarmux[7]",
+      "note": "",
+      "package": "",
+      "source": "llm",
+      "page": 20
+    },
+    {
+      "package_pin": 4000,
+      "signal": "µA",
+      "note": "",
+      "package": "Min",
+      "source": "table",
+      "page": 41
+    },
+    {
+      "package_pin": 1750,
+      "signal": "µA",
+      "note": "",
+      "package": "Min",
+      "source": "table",
+      "page": 41
+    },
+    {
+      "package_pin": 1,
+      "signal": "LSB",
+      "note": "",
+      "package": "Min",
+      "source": "table",
+      "page": 41
+    },
+    {
+      "package_pin": 3,
+      "signal": "LSB",
+      "note": "",
+      "package": "Min",
+      "source": "table",
+      "page": 41
+    },
+    {
+      "package_pin": 34,
+      "signal": "-",
+      "note": "",
+      "package": "Description",
+      "source": "table",
+      "page": 41
+    },
+    {
+      "package_pin": 41,
+      "signal": "µA",
+      "note": "",
+      "package": "Min",
+      "source": "table",
+      "page": 41
+    }
+  ],
+  "port_functions": [
+    {
+      "pin": "P0.0",
+      "name": "Alternate function pin",
+      "description": "Alternate function pin",
+      "type": "alternate-function",
+      "aliases": [],
+      "source": "llm",
+      "page": 5
+    },
+    {
+      "pin": "P1.0",
+      "name": "Alternate function pin",
+      "description": "Alternate function pin",
+      "type": "alternate-function",
+      "aliases": [],
+      "source": "llm",
+      "page": 5
+    },
+    {
+      "pin": "VDDA",
+      "name": "Alternate function pin",
+      "description": "Alternate function pin",
+      "type": "alternate-function",
+      "aliases": [],
+      "source": "llm",
+      "page": 5
+    },
+    {
+      "pin": "XRES",
+      "name": "Alternate function pin",
+      "description": "Alternate function pin",
+      "type": "alternate-function",
+      "aliases": [],
+      "source": "llm",
+      "page": 5
+    },
+    {
+      "pin": "P0.0",
+      "name": "P0.0",
+      "description": "",
+      "type": "Port Pin",
+      "aliases": [],
+      "source": "llm",
+      "page": 16
+    },
+    {
+      "pin": "P1.0",
+      "name": "P1.0",
+      "description": "",
+      "type": "Port Pin",
+      "aliases": [],
+      "source": "llm",
+      "page": 16
+    },
+    {
+      "pin": "XRES",
+      "name": "XRES",
+      "description": "",
+      "type": "Port Pin",
+      "aliases": [],
+      "source": "llm",
+      "page": 16
+    },
+    {
+      "pin": "P4.0",
+      "name": "P4.0",
+      "description": "",
+      "type": "Port Pin",
+      "aliases": [],
+      "source": "llm",
+      "page": 16
+    },
+    {
+      "pin": "VDDA",
+      "name": "VDDA",
+      "description": "",
+      "type": "Port Pin",
+      "aliases": [],
+      "source": "llm",
+      "page": 16
+    },
+    {
+      "pin": "P5.0",
+      "name": "P5.0",
+      "description": "",
+      "type": "Port Pin",
+      "aliases": [],
+      "source": "llm",
+      "page": 16
+    },
+    {
+      "pin": "VCCD",
+      "name": "VCCD",
+      "description": "",
+      "type": "Port Pin",
+      "aliases": [],
+      "source": "llm",
+      "page": 16
+    },
+    {
+      "pin": "P1.4",
+      "name": "P1.4",
+      "description": "",
+      "type": "Port Pin",
+      "aliases": [],
+      "source": "llm",
+      "page": 16
+    },
+    {
+      "pin": "VSSA",
+      "name": "VSSA",
+      "description": "",
+      "type": "Port Pin",
+      "aliases": [],
+      "source": "llm",
+      "page": 16
+    },
+    {
+      "pin": "VDDA",
+      "name": "VDDA",
+      "description": "Power supply for the analog section.",
+      "type": "Power",
+      "aliases": [
+        "VDDD"
+      ],
+      "source": "llm",
+      "page": 17
+    },
+    {
+      "pin": "P0.0",
+      "name": "",
+      "description": "SmartIO[0].io[0] | tcpwm.line[4]:1 |  |  | tcpwm.tr_in[0] | cpuss.swd_data:0 | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 18
+    },
+    {
+      "pin": "P0.1",
+      "name": "",
+      "description": "SmartIO[0].io[1] | tcpwm.line_ compl[4]:1 |  |  | tcpwm.tr_in[1] | cpuss.swd_clk:0 | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 18
+    },
+    {
+      "pin": "P0.2",
+      "name": "",
+      "description": "SmartIO[0].io[2] | tcpwm.line[5]:1 |  | srss.ext_clk |  |  | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 18
+    },
+    {
+      "pin": "P0.3",
+      "name": "",
+      "description": "SmartIO[0].io[3] | tcpwm.line_ compl[5]:1 |  |  |  |  | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 18
+    },
+    {
+      "pin": "P0.4",
+      "name": "",
+      "description": "SmartIO[0].io[4] | tcpwm.line[6]:1 | scb[1].uart_rx:0 |  |  | scb[1].i2c_scl:0 | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 18
+    },
+    {
+      "pin": "P0.5",
+      "name": "",
+      "description": "SmartIO[0].io[5] | tcpwm.line_ compl[6]:1 | scb[1].uart_tx:0 |  |  | scb[1].i2c_sda:0 | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 18
+    },
+    {
+      "pin": "P0.6",
+      "name": "",
+      "description": "SmartIO[0].io[6] |  | scb[1].uart_cts:0 |  |  | lpcomp.comp[0]:0 | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 18
+    },
+    {
+      "pin": "P0.7",
+      "name": "",
+      "description": "SmartIO[0].io[7] |  | scb[1].uart_rts:0 |  |  | lpcomp.comp[1]:0 | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 18
+    },
+    {
+      "pin": "P4.0",
+      "name": "wco_in",
+      "description": " | tcpwm.line[0]:2 | scb[2].uart_rx:1 |  | tcpwm.tr_in[5] | scb[2].i2c_scl:1 | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 18
+    },
+    {
+      "pin": "P4.1",
+      "name": "wco_out",
+      "description": " | tcpwm.line_ compl[0]:2 | scb[2].uart_tx:1 |  | tcpwm.tr_in[6] | scb[2].i2c_sda:1 | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 18
+    },
+    {
+      "pin": "P5.0",
+      "name": "csd.cshieldpads",
+      "description": " | tcpwm.line[7]:1 | scb[0].uart_rx:1 |  |  | scb[0].i2c_scl:1 | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 18
+    },
+    {
+      "pin": "P5.1",
+      "name": "csd.vref_ext",
+      "description": " | tcpwm.line_ compl[7]:1 | scb[0].uart_tx:1 |  |  | scb[0].i2c_sda:1 | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 18
+    },
+    {
+      "pin": "P5.2",
+      "name": "csd.dsi_cmod",
+      "description": " | tcpwm.line[6]:2 | scb[0].uart_cts:1 | tr_sar_out |  |  | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 18
+    },
+    {
+      "pin": "P5.3",
+      "name": "csd.dsi_csh_ tank",
+      "description": " | tcpwm.line_ compl[6]:2 | scb[0].uart_rts:1 |  |  |  | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 19
+    },
+    {
+      "pin": "P1.0",
+      "name": "ctb_pads[8] lpcomp.in_p[1]",
+      "description": " | tcpwm.line[0]:1 | scb[1].uart_rx:1 |  |  | scb[1].i2c_scl:1 | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 19
+    },
+    {
+      "pin": "P1.1",
+      "name": "ctb_pads[9] lpcomp.in_n[1]",
+      "description": " | tcpwm.line_ compl[0]:1 | scb[1].uart_tx:1 |  |  | scb[1].i2c_sda:1 | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 19
+    },
+    {
+      "pin": "P1.2",
+      "name": "ctb_pads[10] ctb_oa0_ out_10x[1]",
+      "description": " | tcpwm.line[1]:1 | scb[1].uart_cts:1 |  |  |  | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 19
+    },
+    {
+      "pin": "P1.3",
+      "name": "ctb_pads[11] ctb_oa1_ out_10x[1]",
+      "description": " | tcpwm.line_ compl[1]:1 | scb[1].uart_rts:1 |  |  |  | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 19
+    },
+    {
+      "pin": "P1.4",
+      "name": "ctb_pads[12]",
+      "description": " | tcpwm.line[2]:1 |  |  |  |  | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 19
+    },
+    {
+      "pin": "P1.5",
+      "name": "ctb_pads[13]",
+      "description": " | tcpwm.line_ compl[2]:1 |  |  |  |  | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 19
+    },
+    {
+      "pin": "P1.6",
+      "name": "ctb_pads[14]",
+      "description": " | tcpwm.line[3]:1 |  |  |  |  | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 19
+    },
+    {
+      "pin": "P1.7",
+      "name": "ctb_pads[15]",
+      "description": " | tcpwm.line_ compl[3]:1 |  |  |  |  | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 19
+    },
+    {
+      "pin": "P2.0",
+      "name": "ctb_pads[0]",
+      "description": " | tcpwm.line[4]:0 | scb[2].uart_rx:0 |  |  | scb[2].i2c_scl:0 | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 19
+    },
+    {
+      "pin": "P2.1",
+      "name": "ctb_pads[1]",
+      "description": " | tcpwm.line_ compl[4]:0 | scb[2].uart_tx:0 |  |  | scb[2].i2c_sda:0 | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 19
+    },
+    {
+      "pin": "P2.2",
+      "name": "ctb_pads[2] ctb_oa0_ out_10x[0]",
+      "description": " | tcpwm.line[5]:0 | scb[2].uart_cts:0 |  |  |  | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 19
+    },
+    {
+      "pin": "P2.3",
+      "name": "ctb_pads[3] ctb_oa1_ out_10x[0]",
+      "description": " | tcpwm.line_ compl[5]:0 | scb[2].uart_rts:0 |  |  |  | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 19
+    },
+    {
+      "pin": "P2.4",
+      "name": "ctb_pads[4]",
+      "description": " | tcpwm.line[0]:0 |  |  |  |  | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 19
+    },
+    {
+      "pin": "P2.5",
+      "name": "ctb_pads[5]",
+      "description": " | tcpwm.line_ compl[0]:0 |  |  |  |  | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 20
+    },
+    {
+      "pin": "P2.6",
+      "name": "ctb_pads[6]",
+      "description": " | tcpwm.line[1]:0 |  |  |  |  | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 20
+    },
+    {
+      "pin": "P2.7",
+      "name": "ctb_pads[7]",
+      "description": " | tcpwm.line_ compl[1]:0 |  |  |  |  | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 20
+    },
+    {
+      "pin": "P3.0",
+      "name": "sarmux[0]",
+      "description": " | tcpwm.line[2]:0 | scb[0].uart_rx:0 |  |  | scb[0].i2c_scl:0 | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 20
+    },
+    {
+      "pin": "P3.1",
+      "name": "sarmux[1]",
+      "description": " | tcpwm.line_ compl[2]:0 | scb[0].uart_tx:0 |  |  | scb[0].i2c_sda:0 | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 20
+    },
+    {
+      "pin": "P3.2",
+      "name": "sarmux[2] lpcomp.in_ p[0]",
+      "description": " | tcpwm.line[3]:0 | scb[0].uart_cts:0 |  |  |  | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 20
+    },
+    {
+      "pin": "P3.3",
+      "name": "sarmux[3] lpcomp.in_ n[0]",
+      "description": " | tcpwm.line_ compl[3]:0 | scb[0].uart_rts:0 |  |  |  | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 20
+    },
+    {
+      "pin": "P3.4",
+      "name": "sarmux[4]",
+      "description": " | tcpwm.line[6]:0 |  |  | tcpwm.tr_in[2] |  | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 20
+    },
+    {
+      "pin": "P3.5",
+      "name": "sarmux[5]",
+      "description": " | tcpwm.line_ compl[6]:0 |  |  | tcpwm.tr_in[3] | csd.comp | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 20
+    },
+    {
+      "pin": "P3.6",
+      "name": "sarmux[6]",
+      "description": " | tcpwm.line[7]:0 | scb[2].uart_rx:2 |  | tcpwm.tr_in[4] | scb[2].i2c_scl:2 | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 20
+    },
+    {
+      "pin": "P3.7",
+      "name": "sarmux[7]",
+      "description": " | tcpwm.line_ compl[7]:0 | scb[2].uart_tx:2 |  |  | scb[2].i2c_sda:2 | ",
+      "type": "multiplexed",
+      "aliases": [],
+      "source": "table",
+      "page": 20
+    }
+  ]
+}
