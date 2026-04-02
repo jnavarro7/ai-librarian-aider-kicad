@@ -8,6 +8,7 @@ import argparse
 import pdfplumber
 import ollama
 
+
 PIN_SECTION_RE = re.compile(
     r'(pinout|pinouts|pin map|pin assignment|package pinout|pin list|ball map|pin diagram)',
     re.I
@@ -425,6 +426,34 @@ def extract(pdf_path, part=None, package=None, model='llama3.2:latest'):
     return result, '\n'.join(md)
 
 
+def extract_full_markdown(pdf_path):
+    md = [
+        '# Full PDF Extract',
+        '',
+        f'Source file: {os.path.basename(pdf_path)}',
+        ''
+    ]
+
+    with pdfplumber.open(pdf_path) as pdf:
+        for i, page in enumerate(pdf.pages, start=1):
+            text = page.extract_text() or ''
+            md.append(f'## Page {i}')
+            md.append('')
+            md.extend(render_md_block('### Raw Page Text', text))
+
+            tables = extract_tables_as_text(page)
+            if tables:
+                md.append('### Extracted Tables')
+                md.append('')
+                for ti, table in enumerate(tables, start=1):
+                    md.append(f'#### Table {ti}')
+                    md.append('')
+                    md.extend(render_table_as_markdown(table))
+                    md.append('')
+
+    return '\n'.join(md)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('input_pdf')
@@ -440,6 +469,7 @@ def main():
 
     prefix = args.out or os.path.splitext(args.input_pdf)[0]
     data, md = extract(args.input_pdf, part=args.part, package=args.package, model=args.model)
+    full_md = extract_full_markdown(args.input_pdf)
 
     with open(prefix + '.json', 'w', encoding='utf-8') as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
@@ -447,10 +477,12 @@ def main():
     with open(prefix + '.md', 'w', encoding='utf-8') as f:
         f.write(md)
 
-#    print(json.dumps(data.get('package_pinout', [])[:7], indent=2, ensure_ascii=False))
+    with open(prefix + '-full.md', 'w', encoding='utf-8') as f:
+        f.write(full_md)
 
     print(f'✅ JSON: {prefix}.json')
     print(f'✅ Markdown: {prefix}.md')
+    print(f'✅ Full Markdown: {prefix}-full.md')
 
 
 if __name__ == '__main__':

@@ -10,3 +10,4 @@ tmp/*
 
 # Vector database files
 db/* 
+db/vector_db/*
